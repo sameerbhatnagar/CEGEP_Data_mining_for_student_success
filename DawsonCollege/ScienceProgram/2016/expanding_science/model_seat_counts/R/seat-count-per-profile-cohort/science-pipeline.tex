@@ -1,0 +1,2723 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{float}
+%########################################################################################  
+%            						PACKAGES
+%######################################################################################## 
+
+
+\usepackage{amsmath,amsthm,amssymb,bbm,mathrsfs} %math stuff
+\usepackage{comment}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{lscape}
+\usepackage{xparse} % FOR CREATING CUSTOM ITEMIZE FUNCTION
+\usepackage{rotating} 
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00A0}{ }
+
+
+\usepackage{lastpage}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+%\usepackage[round]{natbib}   % omit 'round' option if you prefer square brackets
+\usepackage[numbers,sort]{natbib}   % omit 'round' option if you prefer square brackets
+\usepackage{placeins}
+\usepackage{epstopdf}
+\usepackage{setspace} %Spacing
+\usepackage{graphicx,graphics}
+\usepackage{booktabs,tabularx}
+\usepackage{enumerate}
+\usepackage{makecell}
+\usepackage{xfrac}
+\usepackage{array}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}} % used for text wrapping in ctable
+\usepackage{listings} 
+\lstloadlanguages{R} 
+\lstset{language=R,basicstyle=\smaller[2],commentstyle=\rmfamily\smaller, 
+  showstringspaces=false,% 
+  xleftmargin=4ex,literate={<-}{{$\leftarrow$}}1 {~}{{$\sim$}}1} 
+\lstset{escapeinside={(*}{*)}}   % for (*\ref{ }*) inside lstlistings (Scode) 
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+
+\usepackage[pagebackref=true,bookmarks]{hyperref}
+                             % Neat package to turn href, ref, cite, gloss entries
+                             % into hyperlinks in the dvi file.
+                             % Make sure this is the last package loaded.
+                             % Use with dvips option to get hyperlinks to work in ps and pdf
+                             % files.  Unfortunately, then they don't work in the dvi file!
+                             % Use without the dvips option to get the links to work in the dvi file.
+
+                             % Note:  \floatstyle{ruled} don't work properly; so change to plain.
+                             % Not as pretty, but functional...
+                             % The bookmarks option sets up proper bookmarks in the pdf file :)
+\hypersetup{
+    unicode=false,          
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={ExpandingScience},    % title
+    pdfauthor={Sameer Rai Bhatnagar},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Sameer Rai Bhatnagar},   % creator of the document
+    pdfproducer={Sameer Rai Bhatnagar}, % producer of the document
+    pdfkeywords={}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=blue,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+ %########################################################################################  
+ %            						DEFINE COLORS
+ %######################################################################################## 
+
+ \usepackage{color, colortbl, xcolor}
+ \definecolor{Gray}{gray}{0.9}
+ \definecolor{gray}{RGB}{110,110,110}
+ \definecolor{darkgray}{RGB}{100,100,100}
+ \definecolor{lightgray}{RGB}{200,200,200}
+ \definecolor{turquoise}{RGB}{81,193,188}
+ \definecolor{tomato}{RGB}{255,136,136}
+ \definecolor{mandarina}{RGB}{229,169,25}
+ \definecolor{foreground}{RGB}{81,141,193}
+ \definecolor{background}{RGB}{246,244,240}
+ \definecolor{highlight}{RGB}{229,169,25}
+ \definecolor{lowlight}{RGB}{200,200,200}
+ \definecolor{beige}{RGB}{255,255,240}
+ \definecolor{pinkish}{RGB}{255,223,247}
+ \definecolor{blueish}{RGB}{204,255,255}
+
+ \usepackage{ctable} % NEED TO LOAD CTABLE AFTER TIKZ FOR SOME REASON
+
+%########################################################################################  
+%            						FANCY HEADER STUFF
+%######################################################################################## 
+
+\usepackage{fancyhdr}
+\cfoot{\thepage}
+\lhead[\leftmark]{}
+\rhead[]{\leftmark}
+\makeatletter
+\makeatother
+\lfoot{} \cfoot{ } \rfoot{{\small{\em Page \thepage \ of \pageref{LastPage}}}}
+
+
+%########################################################################################  
+%            						SPACING
+%######################################################################################## 
+
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+%\usepackage[left=.1in,right=.1in,top=.1in,bottom=.1in]{geometry}
+\usepackage[margin=.7in]{geometry}
+%\usepackage{fullpage}
+
+
+
+\usepackage[compact]{titlesec}
+%\titlespacing*{\section}{0pt}{-1ex}{-1ex}
+%\titlespacing*{\subsection}{0pt}{-1ex}{-1ex}
+%\titlespacing*{\subsubsection}{0pt}{-1ex}{-1ex}
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+%\setlength{\textheight}{9.00in}
+%\setlength{\textwidth}{7.00in}
+%\setlength{\topmargin}{-0.5in}
+%\setlength{\evensidemargin}{-0.25in}
+%\setlength{\oddsidemargin}{-0.25in}
+\renewcommand{\baselinestretch}{1.0}
+
+
+
+%########################################################################################  
+%            						START OF DOCUMENT
+%########################################################################################
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\title{Who are the students in our Science seats?}
+\date{today}
+\maketitle
+
+\tableofcontents
+
+
+
+
+
+\section{Science Seats from 2013-2016}
+
+Starting the in fall of 2013, how many seats are there in each of concentration science courses, and who is occupying those seats? What program are they in? When were they admitted to those programs. This information should help understand the impact of ``off-cycle'' students on our occupancy.
+
+\section{Fall 2013}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:11 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20103 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   6 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   6 \\ 
+  Enviro &   0 &   0 &   0 &   1 &   0 &  29 \\ 
+  Health &   0 &   0 &   0 &   1 &   5 & 198 \\ 
+  Pure &   0 &   0 &   0 &   1 &   3 & 211 \\ 
+  EngTech &   2 &   1 &   0 &   5 &   0 &   0 \\ 
+  Social &   0 &   1 &   2 &  10 &   3 & 156 \\ 
+  SocialCareer &   0 &   0 &   0 &   2 &   0 &   1 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  ArtsCareer &   0 &   1 &   0 &   4 &   0 &   3 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 655 Seats in 201NYA05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:12 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20093 & 20103 & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   1 &   0 &   7 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &   1 &   1 &  15 &   8 &  18 \\ 
+  Pure &   0 &   0 &   0 &   0 &   0 &  17 &  14 &  17 \\ 
+  EngTech &   0 &   1 &   0 &   3 &   0 &   3 &   0 &   1 \\ 
+  Social &   0 &   0 &   0 &   1 &   1 &  13 &   7 &   4 \\ 
+  SocialCareer &   1 &   2 &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   1 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 139 Seats in 201NYB05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:12 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20103 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   6 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &  12 &   9 &  17 &   2 &   2 \\ 
+  Pure &   0 &   4 &   2 & 116 &  28 &  18 \\ 
+  EngTech &   0 &   6 &   1 &   1 &   0 &   0 \\ 
+  Social &   1 &  14 &   6 &  87 &  18 &   6 \\ 
+  SocialCareer &   1 &   1 &   0 &   3 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 364 Seats in 201NYC05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:12 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   3 &   2 &   2 &   0 &   0 \\ 
+  Pure &  14 &   2 &   4 &   1 &   4 \\ 
+  EngTech &   2 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 34 Seats in 201BZS05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:13 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  Pure &   0 &   3 &   4 &   2 &   1 &   2 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 14 Seats in 201BZF05 20133 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:13 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20103 & 20113 & 20123 & 20131 & 20132 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &  12 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &  29 \\ 
+  Health &   0 &   1 &   1 &   1 &   0 & 205 \\ 
+  Pure &   0 &   0 &   0 &   1 &   1 & 216 \\ 
+  EngTech &   0 &   2 &   1 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   0 &   0 &   0 &  22 \\ 
+  ArtsCareer &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 495 Seats in 202NYA05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:13 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   5 &   0 &   0 \\ 
+  Health &   1 &   2 &  13 &  18 &  16 \\ 
+  Pure &   0 &   0 &  12 &  27 &  17 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   2 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 115 Seats in 202NYB05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:14 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20103 & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   3 &   0 &  20 &   0 &   1 \\ 
+  Health &   1 &   0 &   8 &   7 & 156 &  46 &   5 \\ 
+  Pure &   1 &   1 &   1 &   5 &   4 &   4 &   0 \\ 
+  EngTech &   0 &   1 &   0 &   0 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   2 &   0 &   3 &   0 &   9 &   1 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 280 Seats in 202BZF05 20133 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:14 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20103 & 20113 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   1 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   2 &   1 & 202 \\ 
+  Pure &   0 &   0 &   1 &   1 & 213 \\ 
+  EngTech &   2 &   1 &   2 &   0 &   2 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   1 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 429 Seats in 203NYA05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:15 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20103 & 20111 & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   5 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   2 &   1 &  12 &   9 &   7 &   2 &   0 &   1 \\ 
+  Pure &   0 &   1 &   8 &   0 & 112 &  18 &   1 &  10 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 190 Seats in 203NYB05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:15 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  19 &   0 &   0 &   1 \\ 
+  Health &   1 &   4 &   6 & 169 &  50 &   0 &  12 \\ 
+  Pure &   0 &   1 &   1 &  18 &  24 &   1 &  22 \\ 
+  EngTech &   0 &   0 &   2 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 331 Seats in 203NYC05 20133 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:16 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &   0 &   0 \\ 
+  Pure &   5 &   3 &   7 &   3 &   3 \\ 
+  EngTech &   1 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 23 Seats in 203BZE05 20133 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:16 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   1 &   0 &  29 \\ 
+  Health &   0 &   1 &   3 &  13 &  18 \\ 
+  Pure &   4 &   2 & 113 &  16 &   9 \\ 
+  EngTech &   0 &   1 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   1 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 211 Seats in 101NYA05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:16 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20103 & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   4 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &   7 &   6 & 150 &  43 &   5 \\ 
+  Pure &   0 &   0 &   4 &   4 &   1 &   3 &   1 \\ 
+  EngTech &   0 &   1 &   2 &   1 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 235 Seats in 101BZE05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:17 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   7 &   8 &   4 &   2 &   1 \\ 
+  Pure &   1 &   1 &   4 &   2 &   2 &   5 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 37 Seats in 101BZH05 20133 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:17 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &  27 &   0 &   1 \\ 
+  Health &   0 &   0 &   8 &   2 &   0 \\ 
+  Pure &   1 &   1 &   3 &   0 &   0 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 43 Seats in 101BZPDW 20133 by profile and year of admission} 
+\end{figure}
+
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:17 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   2 &   1 &   1 &   0 &   0 &   0 \\ 
+  Pure &   9 &   3 &   7 &   2 &   1 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 29 Seats in 205BZG05 20133 by profile and year of admission} 
+\end{figure}
+
+
+
+\section{Winter 2014}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:18 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20103 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &  13 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   7 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   5 &   0 \\ 
+  Health &   0 &   0 &   0 &   1 &   2 &  15 &  17 \\ 
+  Pure &   0 &   0 &   0 &   0 &   0 &  21 &  15 \\ 
+  EngTech &   0 &   2 &   0 &   5 &   0 &  37 &   0 \\ 
+  Social &   0 &   0 &   1 &   5 &   3 &  20 &  23 \\ 
+  SocialCareer &   1 &   1 &   0 &   2 &   0 &   2 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   2 &   0 &  15 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   2 &   0 &   1 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 218 Seats in 201NYA05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:18 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+ & 20103 & 20111 & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   7 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   4 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   1 &   0 &   0 &  19 &   0 \\ 
+  Health &   0 &   1 &   0 &   0 &   3 &   2 &   0 & 160 &  52 \\ 
+  Pure &   0 &   0 &   0 &   1 &   4 &   4 &   0 & 139 &  23 \\ 
+  EngTech &   2 &   0 &   0 &   0 &   5 &   0 &   0 &   3 &   1 \\ 
+  Social &   0 &   0 &   1 &   0 &  11 &   4 &   1 &  95 &  15 \\ 
+  SocialCareer &   1 &   0 &   2 &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   1 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 563 Seats in 201NYB05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:18 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20073 & 20103 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   2 &   0 &  21 &   0 &   1 &   0 \\ 
+  Health &   0 &   1 &   3 &   2 & 149 &  44 &  11 &   3 \\ 
+  Pure &   1 &   0 &   2 &   0 &  21 &  17 &  13 &   8 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   4 &   0 &   0 &   1 \\ 
+  Social &   0 &   0 &   3 &   0 &  15 &   9 &  25 &   7 \\ 
+  SocialCareer &   0 &   1 &   0 &   0 &   5 &   0 &  44 &   0 \\ 
+  SMSECareer &   0 &   0 &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 414 Seats in 201NYC05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:19 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   3 &  15 &   1 &   0 &   0 \\ 
+  Pure &   5 &   1 &  37 &   4 &   1 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 70 Seats in 201BZS05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:19 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   2 &   1 &   0 &   0 \\ 
+  Pure &   4 &  62 &   8 &   8 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 88 Seats in 201BZF05 20141 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:19 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20093 & 20121 & 20123 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &  13 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   3 \\ 
+  Enviro &   0 &   0 &   0 &   4 &   0 \\ 
+  Health &   0 &   0 &   0 &  11 &  25 \\ 
+  Pure &   0 &   0 &   0 &  10 &  15 \\ 
+  EngTech &   1 &   0 &   0 &   1 &   1 \\ 
+  Social &   0 &   1 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   1 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 86 Seats in 202NYA05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:20 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20073 & 20123 & 20131 & 20132 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   2 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   8 \\ 
+  Enviro &   0 &   0 &   0 &   0 &  20 &   0 \\ 
+  Health &   0 &   2 &   1 &   0 & 166 &  46 \\ 
+  Pure &   1 &   1 &   3 &   1 & 149 &  26 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   0 &   0 &  18 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 445 Seats in 202NYB05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:20 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  11 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &   3 &  25 &  20 &  12 &  10 \\ 
+  Pure &   0 &   1 &   1 &  19 &   5 &   6 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   0 &   1 &   0 &   1 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 119 Seats in 202BZF05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:20 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &  36 &   9 &   3 &   0 \\ 
+  Pure &   1 &   0 &   0 &   0 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 50 Seats in 202BZG05 20141 by profile and year of admission} 
+\end{figure}
+
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:21 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20113 & 20123 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &  14 &   0 \\ 
+  DSP &   0 &   0 &   0 &  11 \\ 
+  Enviro &   0 &   0 &  24 &   0 \\ 
+  Health &   0 &   0 &   6 &  24 \\ 
+  Pure &   0 &   0 &   5 &  19 \\ 
+  EngTech &   2 &   2 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 108 Seats in 203NYA05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:21 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+ & 20073 & 20103 & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &  11 &   0 &   0 &   1 &   0 \\ 
+  Health &   0 &   1 &   4 &   4 & 150 &  38 &   0 &   6 &   3 \\ 
+  Pure &   1 &   0 &   2 &   0 &  18 &  23 &   1 &  20 &   9 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   1 &   0 &   0 &   0 &   2 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 296 Seats in 203NYB05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:21 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  13 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &   3 &   6 &  15 &  13 &   5 \\ 
+  Pure &   0 &   2 &   0 &   9 &   6 & 143 &  19 \\ 
+  EngTech &   0 &   0 &   0 &   2 &   0 &   0 &   1 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 239 Seats in 203NYC05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:22 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   3 &   0 &   0 &   0 \\ 
+  Pure &   3 &   1 &  40 &  10 &   5 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 64 Seats in 203BZA05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:22 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   1 &   0 &   1 &   0 \\ 
+  Pure &   2 &  49 &  10 &   6 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 70 Seats in 203BZE05 20141 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:22 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   4 & 168 &  50 \\ 
+  Pure &   1 &  11 &  14 &  25 &   5 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   1 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   1 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 281 Seats in 101NYA05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:23 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   2 &   0 &  23 &   0 &   1 &   0 \\ 
+  Health &   1 &   2 &  23 &  14 &  13 &   3 \\ 
+  Pure &   3 &   0 &  31 &   5 &   3 &   0 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 126 Seats in 101BZE05 20141 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:23 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20103 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &   0 &  64 &  20 &   2 &   4 \\ 
+  Pure &   0 &   2 &   1 &  19 &   4 &   1 &   4 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 123 Seats in 101BZH05 20141 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:23 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   1 &   0 &  15 &   3 &   1 &   1 \\ 
+  Pure &   1 &   2 &   1 &  31 &   6 &   4 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 68 Seats in 205BZG05 20141 by profile and year of admission} 
+\end{figure}
+
+
+
+\section{Fall 2014}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:24 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &  32 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &  11 \\ 
+  Enviro &   0 &   0 &   0 &   1 &   0 &  34 \\ 
+  Health &   0 &   0 &   0 &   0 &   1 & 204 \\ 
+  Pure &   0 &   0 &   0 &   0 &   2 & 204 \\ 
+  EngTech &   1 &   1 &   0 &   4 &   1 &   0 \\ 
+  Social &   0 &   0 &   2 &   0 &   0 & 158 \\ 
+  SocialCareer &   0 &   2 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   1 &   0 &   1 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 660 Seats in 201NYA05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:24 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   1 &   0 &   3 &   0 &   0 \\ 
+  Health &   1 &   0 &  13 &  18 &   9 \\ 
+  Pure &   0 &   2 &  16 &  11 &  13 \\ 
+  EngTech &   3 &   0 &   3 &   0 &   0 \\ 
+  Social &   0 &   0 &   2 &  10 &   1 \\ 
+  SocialCareer &   2 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 108 Seats in 201NYB05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:25 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   9 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   2 &   1 &   8 &  10 &  13 &   6 &   1 \\ 
+  Pure &   0 &   0 &   0 &   3 &   4 & 127 &  21 &  14 \\ 
+  EngTech &   0 &   1 &   0 &   3 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   2 &   1 &  84 &  10 &   1 \\ 
+  SocialCareer &   0 &   1 &   0 &   2 &   0 &   2 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 327 Seats in 201NYC05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:25 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   2 &   2 &   2 &   0 &   0 \\ 
+  Pure &   1 &  12 &   9 &   5 &   2 &   2 \\ 
+  EngTech &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 38 Seats in 201BZS05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:25 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &   0 &   1 &   0 &   0 \\ 
+  Pure &   1 &   1 &   5 &   6 &   5 &   3 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 26 Seats in 201BZF05 20143 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:26 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   3 \\ 
+  DSP &   0 &   0 &  20 \\ 
+  Enviro &   0 &   0 &  33 \\ 
+  Health &   0 &   4 & 206 \\ 
+  Pure &   0 &   3 & 207 \\ 
+  EngTech &   1 &   1 &   0 \\ 
+  Social &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &  20 \\ 
+  ArtsCareer &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 499 Seats in 202NYA05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:26 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   3 &   0 &   1 \\ 
+  Health &   0 &   0 &  11 &  16 &   8 \\ 
+  Pure &   1 &   2 &  16 &  13 &   9 \\ 
+  EngTech &   0 &   0 &   1 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 82 Seats in 202NYB05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:26 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   5 &   0 &  11 &   0 &   1 \\ 
+  Health &   1 &   1 &   7 &   4 & 142 &  43 &  13 \\ 
+  Pure &   0 &   0 &   6 &   4 &  13 &   2 &   0 \\ 
+  EngTech &   1 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   2 &   0 &   3 &   0 &  14 &   0 &   2 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 275 Seats in 202BZF05 20143 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:27 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20093 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   1 \\ 
+  Enviro &   0 &   3 &   0 &   1 \\ 
+  Health &   0 &   2 &   2 & 206 \\ 
+  Pure &   0 &   0 &   1 & 209 \\ 
+  EngTech &   1 &   8 &   2 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   2 &   0 &   1 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 439 Seats in 203NYA05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:27 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &  12 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   2 &   6 &  11 &   6 &   5 &   0 \\ 
+  Pure &   0 &   0 &   7 &   4 & 124 &  19 &   6 \\ 
+  EngTech &   0 &   1 &   2 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 206 Seats in 203NYB05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:28 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   1 &   0 &  13 &   0 &   1 \\ 
+  Health &   0 &   0 & 144 &  46 &  19 \\ 
+  Pure &   0 &   1 &  15 &  19 &  19 \\ 
+  EngTech &   1 &   0 &   2 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 281 Seats in 203NYC05 20143 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:28 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  Pure &   1 &   1 &   9 &   6 &   6 &   3 &   6 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 33 Seats in 203BZE05 20143 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:29 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &  33 \\ 
+  Health &   0 &   0 &   0 &   4 &  15 &  10 \\ 
+  Pure &   1 &   2 &   2 & 123 &  21 &   6 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 218 Seats in 101NYA05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:29 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   2 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   8 &   5 & 137 &  39 &  10 \\ 
+  Pure &   0 &   4 &   2 &   7 &   1 &   1 \\ 
+  EngTech &   1 &   2 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 219 Seats in 101BZE05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:29 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &   6 &   7 &   5 &   4 &   0 \\ 
+  Pure &   0 &   1 &   5 &   3 &   4 &   1 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 39 Seats in 101BZH05 20143 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:29 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &  14 &   0 &   1 \\ 
+  Health &   1 &   7 &   5 &   0 \\ 
+  Pure &   0 &   2 &   0 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 31 Seats in 101BZPDW 20143 by profile and year of admission} 
+\end{figure}
+
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:30 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &   2 &   2 &   2 &   2 &   0 \\ 
+  Pure &   1 &   1 &   7 &   6 &   6 &   1 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 34 Seats in 205BZG05 20143 by profile and year of admission} 
+\end{figure}
+
+
+
+\section{Winter 2015}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:30 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20123 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &  11 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &  15 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   5 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &  16 &  20 \\ 
+  Pure &   0 &   0 &   0 &   0 &  14 &  19 \\ 
+  EngTech &   1 &   3 &   9 &   0 &  25 &   1 \\ 
+  Social &   0 &   1 &   0 &   1 &   2 &  12 \\ 
+  SocialCareer &   0 &   3 &   5 &   0 &   1 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &  17 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   3 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 184 Seats in 201NYA05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:31 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &  17 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   6 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &  22 &   0 \\ 
+  Health &   0 &   0 &   0 &   4 &   5 & 164 &  41 \\ 
+  Pure &   0 &   0 &   2 &   7 &   5 & 156 &  33 \\ 
+  EngTech &   1 &   2 &   0 &   9 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   3 &   0 &  92 &   7 \\ 
+  SocialCareer &   0 &   0 &   0 &   2 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   1 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   1 &   1 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 582 Seats in 201NYB05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:31 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &  13 &   0 &   1 &   0 \\ 
+  Health &   1 &   1 &   0 &   0 & 136 &  36 &  13 &   2 \\ 
+  Pure &   0 &   0 &   0 &   1 &  12 &   9 &   6 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   3 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   3 &   0 &   2 &  10 &  25 &   1 \\ 
+  SocialCareer &   0 &   0 &   2 &   0 &   1 &   0 &  49 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 330 Seats in 201NYC05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:31 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &  18 &   4 &   3 &   0 \\ 
+  Pure &   2 &   1 &  39 &   3 &   4 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 76 Seats in 201BZS05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:31 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20091 & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   4 &   1 &   0 &   1 \\ 
+  Pure &   1 &   2 &   2 &  67 &   5 &   8 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 93 Seats in 201BZF05 20151 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:32 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20123 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &  25 &   0 \\ 
+  DSP &   0 &   0 &   8 &   0 \\ 
+  Enviro &   0 &   0 &   1 &   0 \\ 
+  Health &   0 &   1 &  14 &  20 \\ 
+  Pure &   0 &   1 &  11 &  26 \\ 
+  EngTech &   2 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   4 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 113 Seats in 202NYA05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:32 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   2 &   0 \\ 
+  DSP &   0 &   0 &   0 &  11 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  26 &   0 \\ 
+  Health &   0 &   2 &   3 & 169 &  41 \\ 
+  Pure &   2 &   0 &   5 & 155 &  24 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &  16 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 456 Seats in 202NYB05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:32 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &   1 &   2 &  17 &  18 &   8 &   6 \\ 
+  Pure &   0 &   0 &   0 &   1 &  27 &   1 &   2 &   0 \\ 
+  EngTech &   0 &   0 &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   0 &   1 &   0 &   0 &   1 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 90 Seats in 202BZF05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:33 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &  34 &   4 &   2 &   1 \\ 
+  Pure &   0 &   1 &   1 &   0 &   0 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 44 Seats in 202BZG05 20151 by profile and year of admission} 
+\end{figure}
+
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:33 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20123 & 20133 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &  26 &   0 \\ 
+  DSP &   0 &   0 &  19 &   0 \\ 
+  Enviro &   0 &   0 &  25 &   0 \\ 
+  Health &   0 &   0 &   7 &  23 \\ 
+  Pure &   0 &   0 &   7 &  29 \\ 
+  EngTech &   3 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   1 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 141 Seats in 203NYA05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:33 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrrrr}
+  \hline
+ & 20111 & 20113 & 20121 & 20123 & 20131 & 20132 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &  14 &   0 &   1 &   0 \\ 
+  Health &   1 &   1 &   1 &   5 &   4 &   0 & 134 &  38 &  11 &   3 \\ 
+  Pure &   0 &   0 &   0 &   2 &   2 &   1 &  27 &  15 &  13 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   2 &   0 &   0 &   0 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   1 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 280 Seats in 203NYB05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:34 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 \\ 
+  Health &  11 &  15 &   9 &   4 \\ 
+  Pure &   5 &   4 & 158 &  22 \\ 
+  EngTech &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 228 Seats in 203NYC05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:34 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &   0 &   0 &   0 \\ 
+  Pure &   3 &   3 &  36 &  10 &   5 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 60 Seats in 203BZA05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:34 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   4 &   0 &   0 &   0 \\ 
+  Pure &   1 &   2 &  50 &   6 &   3 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 67 Seats in 203BZE05 20151 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:35 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20123 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   1 &   0 \\ 
+  Health &   0 &   0 &   0 &   2 & 173 &  41 \\ 
+  Pure &   1 &   1 &   8 &   8 &   9 &   5 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 249 Seats in 101NYA05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:35 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20121 & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   1 &   0 &  14 &   0 &   1 &   0 \\ 
+  Health &   1 &   3 &   2 &  19 &  18 &  11 &   6 \\ 
+  Pure &   0 &   1 &   1 &  30 &   5 &   1 &   0 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 114 Seats in 101BZE05 20151 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:36 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20131 & 20132 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   4 &   2 &   0 &  50 &  13 &   2 &   1 \\ 
+  Pure &   0 &   1 &   1 &  18 &   4 &   2 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 99 Seats in 101BZH05 20151 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:36 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20113 & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   1 &  13 &   9 &   0 &   0 \\ 
+  Pure &   0 &   1 &   2 &  26 &   7 &   4 &   2 \\ 
+  EngTech &   1 &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 67 Seats in 205BZG05 20151 by profile and year of admission} 
+\end{figure}
+
+
+\section{Fall 2015}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:37 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &  17 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &  10 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &  33 \\ 
+  Health &   0 &   0 &   0 &   1 &   2 & 252 \\ 
+  Pure &   0 &   0 &   0 &   1 &   3 & 215 \\ 
+  EngTech &   2 &   0 &   0 &   1 &   0 &   0 \\ 
+  Social &   0 &   1 &   1 &   6 &   5 &  95 \\ 
+  SocialCareer &   2 &   3 &   0 &   1 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   0 &   3 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 655 Seats in 201NYA05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:37 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   7 &   0 &   2 \\ 
+  Health &   0 &   2 &   1 &  18 &  22 &  12 \\ 
+  Pure &   0 &   0 &   1 &  20 &  14 &  15 \\ 
+  EngTech &   1 &   2 &   0 &   8 &   2 &   2 \\ 
+  Social &   0 &   2 &   1 &  11 &   4 &   3 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   1 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 152 Seats in 201NYB05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:37 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & 20123 & 20131 & 20132 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   3 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   7 &  13 &  11 &   1 &   3 \\ 
+  Pure &   0 &   1 &   1 &   8 &   2 & 133 &  25 &   8 \\ 
+  EngTech &   0 &   1 &   0 &   1 &   0 &   2 &   0 &   1 \\ 
+  Social &   1 &   0 &   0 &   2 &   2 &  68 &   6 &   3 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   1 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 304 Seats in 201NYC05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:38 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   2 &   0 &   0 &   0 &   0 \\ 
+  Pure &   1 &   1 &  13 &   5 &   4 &   2 &   6 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 34 Seats in 201BZS05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:38 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   0 \\ 
+  Pure &   1 &   9 &   5 &   2 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 19 Seats in 201BZF05 20153 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:38 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20133 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   7 \\ 
+  DSP &   0 &   0 &   0 &  20 \\ 
+  Enviro &   0 &   0 &   0 &  33 \\ 
+  Health &   0 &   0 &   1 & 255 \\ 
+  Pure &   0 &   1 &   2 & 214 \\ 
+  EngTech &   4 &   0 &   0 &   1 \\ 
+  Social &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   2 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   0 &  21 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 562 Seats in 202NYA05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:39 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20113 & 20131 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   4 &   0 &   4 \\ 
+  Health &   0 &   0 &   1 &   7 &  17 &  16 \\ 
+  Pure &   0 &   1 &   2 &  15 &  16 &  14 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   1 &   0 &   0 &   0 &   0 &   1 \\ 
+  SMSECareer &   0 &   0 &   0 &   1 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 101 Seats in 202NYB05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:39 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20132 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   3 &   0 &  14 &   0 &   0 \\ 
+  Health &   0 &   8 &   1 & 151 &  34 &   8 \\ 
+  Pure &   1 &   1 &   2 &   3 &   2 &   0 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 228 Seats in 202BZF05 20153 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:40 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20093 & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   3 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   4 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   1 &   3 & 253 \\ 
+  Pure &   0 &   0 &   0 &   0 &   0 &   2 & 215 \\ 
+  EngTech &   1 &   2 &   0 &   1 &   4 &   2 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   1 &   1 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 496 Seats in 203NYA05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:40 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &  10 &   9 &   4 &   1 &   2 \\ 
+  Pure &   0 &   0 &   9 &   4 & 143 &  20 &  11 \\ 
+  EngTech &   0 &   1 &   0 &   0 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 220 Seats in 203NYB05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:40 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  15 &   0 &   1 \\ 
+  Health &   1 &   1 &   1 & 157 &  35 &  12 \\ 
+  Pure &   1 &   2 &   0 &  12 &  19 &  21 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   1 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 279 Seats in 203NYC05 20153 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:41 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20131 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Pure &   1 &   4 &   6 &   3 &   2 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 17 Seats in 203BZE05 20153 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:42 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &  36 \\ 
+  Health &   0 &   1 &   4 &  16 &  19 \\ 
+  Pure &   5 &   2 & 136 &  20 &   6 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 245 Seats in 101NYA05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:42 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   5 &   7 & 147 &  25 &   5 \\ 
+  Pure &   0 &   6 &   1 &   5 &   5 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   1 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 211 Seats in 101BZE05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:42 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20131 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &   3 &   6 &   3 &   1 &   0 \\ 
+  Pure &   1 &   1 &   9 &   5 &   1 &   0 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 34 Seats in 101BZH05 20153 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:43 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 \\ 
+  Enviro &  23 &   0 &   0 \\ 
+  Health &   7 &   1 &   0 \\ 
+  Pure &   0 &   0 &   2 \\ 
+  EngTech &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 33 Seats in 101BZPDW 20153 by profile and year of admission} 
+\end{figure}
+
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:43 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+ & 20091 & 20123 & 20131 & 20132 & 20133 & 20141 & 20143 & 20151 & 20153 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   2 &   2 &   3 &   0 &   1 \\ 
+  Pure &   1 &   1 &   1 &   1 &   8 &   6 &   1 &   4 &   4 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 35 Seats in 205BZG05 20153 by profile and year of admission} 
+\end{figure}
+
+
+
+\section{Winter 2016}
+
+\subsection{Math}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:43 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &  20 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &  15 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   4 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   0 &  30 &   9 \\ 
+  Pure &   0 &   0 &   0 &   0 &   2 &  40 &  16 \\ 
+  EngTech &   0 &   1 &   0 &   5 &   0 &  26 &   0 \\ 
+  Social &   0 &   1 &   1 &   2 &   1 &   2 &   3 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   2 &   0 &   0 &   1 &   0 &  15 &   0 \\ 
+  ArtsCareer &   0 &   1 &   0 &   1 &   0 &   1 &   1 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 200 Seats in 201NYA05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:44 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20133 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   7 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   4 &   0 \\ 
+  Enviro &   0 &   0 &   1 &   0 &  25 &   0 \\ 
+  Health &   0 &   1 &   3 &   4 & 186 &  15 \\ 
+  Pure &   0 &   0 &   6 &   2 & 144 &  30 \\ 
+  EngTech &   0 &   1 &   4 &   0 &   2 &   0 \\ 
+  Social &   0 &   0 &   2 &   1 &  37 &  10 \\ 
+  SocialCareer &   1 &   5 &   1 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   2 &   0 &   1 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 495 Seats in 201NYB05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:44 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  17 &   0 &   2 &   0 \\ 
+  Health &   0 &   3 &   5 & 140 &  25 &   9 &   6 \\ 
+  Pure &   0 &   0 &   3 &  22 &  16 &   8 &   6 \\ 
+  EngTech &   1 &   1 &   0 &   0 &   0 &   1 &   0 \\ 
+  Social &   0 &   1 &   0 &   8 &   7 &   8 &   5 \\ 
+  SocialCareer &   0 &   1 &   0 &   3 &   0 &  46 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   2 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 346 Seats in 201NYC05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:44 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   0 &  27 &   1 &   0 &   0 \\ 
+  Pure &   6 &   2 &  63 &   7 &   3 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 112 Seats in 201BZS05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:45 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   1 &   4 &   0 &   0 &   0 \\ 
+  Pure &   3 &   1 &  45 &   8 &   1 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 66 Seats in 201BZF05 20161 by profile and year of admission} 
+\end{figure}
+
+\subsection{Chemistry}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:45 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &  19 &   0 \\ 
+  DSP &   0 &   0 &   0 &   5 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   2 &   0 \\ 
+  Health &   0 &   0 &   0 &  11 &   6 \\ 
+  Pure &   0 &   0 &   0 &  21 &  16 \\ 
+  EngTech &   1 &   0 &   1 &   0 &   0 \\ 
+  Social &   0 &   1 &   0 &   0 &   0 \\ 
+  SocialCareer &   1 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   1 &   2 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 87 Seats in 202NYA05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:45 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   3 &   0 \\ 
+  DSP &   0 &   0 &  14 &   0 \\ 
+  Enviro &   0 &   0 &  27 &   0 \\ 
+  Health &   4 &   1 & 203 &  18 \\ 
+  Pure &   4 &   4 & 156 &  30 \\ 
+  EngTech &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   3 &   0 &  16 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 484 Seats in 202NYB05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:46 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   1 &   0 &   3 &   0 &   1 &   0 \\ 
+  Health &   1 &   3 &   2 &  18 &  23 &   9 &   3 \\ 
+  Pure &   0 &   0 &   0 &  17 &   8 &   3 &   1 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   2 &   1 &   0 &   9 &   0 &   1 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 107 Seats in 202BZF05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:46 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & 20143 & 20151 \\ 
+  \hline
+ESP &   0 &   0 \\ 
+  DSP &   0 &   0 \\ 
+  Enviro &   0 &   0 \\ 
+  Health &  25 &   7 \\ 
+  Pure &   0 &   0 \\ 
+  EngTech &   0 &   0 \\ 
+  Social &   0 &   0 \\ 
+  SocialCareer &   0 &   0 \\ 
+  SMSECareer &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 \\ 
+  SpringBoard &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 32 Seats in 202BZG05 20161 by profile and year of admission} 
+\end{figure}
+
+\subsection{Physics}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:46 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20133 & 20143 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &  23 &   0 \\ 
+  DSP &   0 &   0 &   0 &  19 &   0 \\ 
+  Enviro &   0 &   0 &   1 &  29 &   0 \\ 
+  Health &   0 &   0 &   0 &   8 &   4 \\ 
+  Pure &   0 &   0 &   0 &  13 &  24 \\ 
+  EngTech &   1 &   1 &   5 &   2 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   1 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   1 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 132 Seats in 203NYA05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:47 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  14 &   0 &   1 &   0 \\ 
+  Health &   0 &   4 &   3 & 132 &  21 &   5 &   5 \\ 
+  Pure &   1 &   3 &   0 &  17 &  19 &  14 &   4 \\ 
+  EngTech &   0 &   1 &   0 &   2 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 246 Seats in 203NYB05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:47 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20123 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   1 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   3 &   0 &   2 &   0 \\ 
+  Health &   1 &  11 &  18 &   7 &   1 \\ 
+  Pure &   0 &   1 &   3 & 132 &  22 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   1 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 203 Seats in 203NYC05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:47 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   3 &   0 &   1 &   0 \\ 
+  Pure &   1 &   1 &   2 &  52 &   7 &   3 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 73 Seats in 203BZA05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:48 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   0 &   0 \\ 
+  Pure &   1 &   1 &  50 &   6 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 61 Seats in 203BZE05 20161 by profile and year of admission} 
+\end{figure}
+
+\subsection{Biology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:48 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20123 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   0 &   0 &   1 & 204 &  18 \\ 
+  Pure &   0 &   2 &  11 &  12 &  42 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   1 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 295 Seats in 101NYA05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:48 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & 20123 & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &  17 &   0 &   3 &   0 \\ 
+  Health &   1 &   2 &   3 &  19 &  20 &  12 &   3 \\ 
+  Pure &   0 &   1 &   2 &  23 &   9 &   4 &   2 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   1 &   1 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 123 Seats in 101BZE05 20161 by profile and year of admission} 
+\end{figure}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:49 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   0 &   2 &  53 &  13 &   3 &   2 \\ 
+  Pure &   2 &   0 &  24 &   3 &   3 &   3 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 108 Seats in 101BZH05 20161 by profile and year of admission} 
+\end{figure}
+\begin{kframe}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in characters | factors: operations are possible only for numeric, logical or complex types}}\end{kframe}
+\subsection{Geology}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Tue Nov 22 22:27:49 2016
+\begin{figure}[H]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 20133 & 20141 & 20143 & 20151 & 20153 & 20161 \\ 
+  \hline
+ESP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  DSP &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Enviro &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Health &   1 &   1 &  14 &   2 &   0 &   0 \\ 
+  Pure &   2 &   0 &  31 &   7 &   6 &   4 \\ 
+  EngTech &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  Social &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SocialCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SMSECareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  ArtsCareer &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  SpringBoard &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+   \hline
+\end{tabular}
+\caption{Distribution of 68 Seats in 205BZG05 20161 by profile and year of admission} 
+\end{figure}
+
+\end{document}

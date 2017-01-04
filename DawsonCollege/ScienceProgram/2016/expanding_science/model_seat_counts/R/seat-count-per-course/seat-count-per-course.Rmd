@@ -1,0 +1,64 @@
+---
+title: "pipeline-v5"
+author: "Sameer Bhatnagar"
+date: "December 12, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+knitr::read_chunk('pipeline-v5.R')
+```
+
+```{r load-data, echo=FALSE}
+```
+
+## Counting Students 
+First Let us just make sure we are starting with the right student lists for the different profiles admitted in 20133 and 20141
+
+```{r student-counts}
+```
+
+For ESP-DSP, my number matches yours __if we do not__ include people admitted to *09162* and *09164*, however the number is more reasonable if we do.
+
+```{r student-counts-ESPDSP}
+```
+
+I continue on from this point keeping the same conventiona as you, with the lower number of students in ESP-DSP.
+
+## Seat Count for All profiles for both Fall and Winter Admits
+I give this big table mostly because our numbers _still don't match_ exactly in the next section. Maybe this full table can help figure out why.
+
+```{r seat-counts}
+```
+
+## Collapse All Years into one 'Representative Year'
+This should match your numbers exactly, and they are still off. I am not sure why. Maybe we can debug using the table above, and my source code (in Appendix at end of this document)
+
+```{r collapse-all-years}
+```
+
+
+## Make projections with additional admits
+The fun part: I scale up to 300 admits for Pure & Applied (the way you did), but leave the other profiles alone (unlike your projections). Before I do that as well, we should figure out why the _actual seat counts_ are not exactly the same as yours.
+
+```{r projections-new-admits}
+```
+
+## Projections for past years
+I go back until 2010, since that is the first year Enviro profile started. I also only look at the bottleneck courses, for readability.
+
+```{r projections-all-years}
+```
+
+## Sanity Check
+Just to make sure, let's add 100 students to Health Science alone, check if any of said bottleneck courses actually max out.
+```{r sanity-check}
+```
+
+Looks like  Bio2 in Fall is only the problem?!
+
+

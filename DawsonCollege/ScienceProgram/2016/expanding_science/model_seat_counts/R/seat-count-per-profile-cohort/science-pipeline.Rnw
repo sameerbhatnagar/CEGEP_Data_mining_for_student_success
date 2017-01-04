@@ -1,0 +1,288 @@
+\documentclass{article}
+\usepackage{float}
+%########################################################################################  
+%            						PACKAGES
+%######################################################################################## 
+
+
+\usepackage{amsmath,amsthm,amssymb,bbm,mathrsfs} %math stuff
+\usepackage{comment}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{lscape}
+\usepackage{xparse} % FOR CREATING CUSTOM ITEMIZE FUNCTION
+\usepackage{rotating} 
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00A0}{ }
+
+
+\usepackage{lastpage}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+%\usepackage[round]{natbib}   % omit 'round' option if you prefer square brackets
+\usepackage[numbers,sort]{natbib}   % omit 'round' option if you prefer square brackets
+\usepackage{placeins}
+\usepackage{epstopdf}
+\usepackage{setspace} %Spacing
+\usepackage{graphicx,graphics}
+\usepackage{booktabs,tabularx}
+\usepackage{enumerate}
+\usepackage{makecell}
+\usepackage{xfrac}
+\usepackage{array}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}} % used for text wrapping in ctable
+\usepackage{listings} 
+\lstloadlanguages{R} 
+\lstset{language=R,basicstyle=\smaller[2],commentstyle=\rmfamily\smaller, 
+  showstringspaces=false,% 
+  xleftmargin=4ex,literate={<-}{{$\leftarrow$}}1 {~}{{$\sim$}}1} 
+\lstset{escapeinside={(*}{*)}}   % for (*\ref{ }*) inside lstlistings (Scode) 
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+
+\usepackage[pagebackref=true,bookmarks]{hyperref}
+                             % Neat package to turn href, ref, cite, gloss entries
+                             % into hyperlinks in the dvi file.
+                             % Make sure this is the last package loaded.
+                             % Use with dvips option to get hyperlinks to work in ps and pdf
+                             % files.  Unfortunately, then they don't work in the dvi file!
+                             % Use without the dvips option to get the links to work in the dvi file.
+
+                             % Note:  \floatstyle{ruled} don't work properly; so change to plain.
+                             % Not as pretty, but functional...
+                             % The bookmarks option sets up proper bookmarks in the pdf file :)
+\hypersetup{
+    unicode=false,          
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={ExpandingScience},    % title
+    pdfauthor={Sameer Rai Bhatnagar},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Sameer Rai Bhatnagar},   % creator of the document
+    pdfproducer={Sameer Rai Bhatnagar}, % producer of the document
+    pdfkeywords={}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=blue,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+ %########################################################################################  
+ %            						DEFINE COLORS
+ %######################################################################################## 
+
+ \usepackage{color, colortbl, xcolor}
+ \definecolor{Gray}{gray}{0.9}
+ \definecolor{gray}{RGB}{110,110,110}
+ \definecolor{darkgray}{RGB}{100,100,100}
+ \definecolor{lightgray}{RGB}{200,200,200}
+ \definecolor{turquoise}{RGB}{81,193,188}
+ \definecolor{tomato}{RGB}{255,136,136}
+ \definecolor{mandarina}{RGB}{229,169,25}
+ \definecolor{foreground}{RGB}{81,141,193}
+ \definecolor{background}{RGB}{246,244,240}
+ \definecolor{highlight}{RGB}{229,169,25}
+ \definecolor{lowlight}{RGB}{200,200,200}
+ \definecolor{beige}{RGB}{255,255,240}
+ \definecolor{pinkish}{RGB}{255,223,247}
+ \definecolor{blueish}{RGB}{204,255,255}
+
+ \usepackage{ctable} % NEED TO LOAD CTABLE AFTER TIKZ FOR SOME REASON
+
+%########################################################################################  
+%            						FANCY HEADER STUFF
+%######################################################################################## 
+
+\usepackage{fancyhdr}
+\cfoot{\thepage}
+\lhead[\leftmark]{}
+\rhead[]{\leftmark}
+\makeatletter
+\makeatother
+\lfoot{} \cfoot{ } \rfoot{{\small{\em Page \thepage \ of \pageref{LastPage}}}}
+
+
+%########################################################################################  
+%            						SPACING
+%######################################################################################## 
+
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+%\usepackage[left=.1in,right=.1in,top=.1in,bottom=.1in]{geometry}
+\usepackage[margin=.7in]{geometry}
+%\usepackage{fullpage}
+
+
+
+\usepackage[compact]{titlesec}
+%\titlespacing*{\section}{0pt}{-1ex}{-1ex}
+%\titlespacing*{\subsection}{0pt}{-1ex}{-1ex}
+%\titlespacing*{\subsubsection}{0pt}{-1ex}{-1ex}
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+%\setlength{\textheight}{9.00in}
+%\setlength{\textwidth}{7.00in}
+%\setlength{\topmargin}{-0.5in}
+%\setlength{\evensidemargin}{-0.25in}
+%\setlength{\oddsidemargin}{-0.25in}
+\renewcommand{\baselinestretch}{1.0}
+
+
+
+%########################################################################################  
+%            						START OF DOCUMENT
+%######################################################################################## 
+
+
+
+
+
+\begin{document}
+
+\title{Who are the students in our Science seats?}
+\date{today}
+\maketitle
+
+\tableofcontents
+
+<<setup, echo=FALSE,message=FALSE,cache=FALSE,results='hide'>>=
+opts_chunk$set(echo = FALSE, tidy = TRUE, cache = FALSE, warning = FALSE, message = FALSE)
+opts_knit$set(eval.after = 'fig.cap') # for captions to be evaluated after R objects are available 
+
+knitr::read_chunk("science-pipeline.R")
+knitr::read_chunk("science-pipeline-functions.R")
+@
+
+<<load-data>>=
+@
+
+\section{Science Seats from 2013-2016}
+
+Starting the in fall of 2013, how many seats are there in each of concentration science courses, and who is occupying those seats? What program are they in? When were they admitted to those programs. This information should help understand the impact of ``off-cycle'' students on our occupancy.
+
+\section{Fall 2013}
+<<term1>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+
+
+\section{Winter 2014}
+<<term2>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+
+
+\section{Fall 2014}
+<<term3>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+
+
+\section{Winter 2015}
+<<term4>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+
+\section{Fall 2015}
+<<term5>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+
+
+\section{Winter 2016}
+<<term6>>=
+@
+\subsection{Math}
+<<math, results='asis'>>==
+@
+\subsection{Chemistry}
+<<chem, results='asis'>>==
+@
+\subsection{Physics}
+<<physics, results='asis'>>==
+@
+\subsection{Biology}
+<<bio, results='asis'>>==
+@
+\subsection{Geology}
+<<geology, results='asis'>>==
+@
+\end{document}

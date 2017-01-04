@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\begin{document}
+\title{The Potential of \textit{Explorations Science Program} Students}
+\author{Sameer Bhatnagar}
+\maketitle
+<<setup, echo=FALSE,warning=FALSE,message=FALSE,cache=FALSE, results='hide'>>=
+options(width=60, digits=2)
+set.seed(45)
+opts_chunk$set(echo = FALSE, tidy = TRUE, cache = FALSE, warning = FALSE, message = FALSE)
+opts_template$set(
+    fig.large = list(fig.width = 7, fig.height = 5, fig.align = 'center', fig.pos = 'H'),
+    fig.small = list(fig.width = 6, fig.height = 4, fig.align = 'center', fig.pos = 'H'),
+    fig.full = list(fig.width = 8, fig.height = 6, fig.align = 'center', fig.pos = 'H')
+)
+opts_knit$set(eval.after = 'fig.cap') # for captions to be evaluated after R objects are available 
+
+knitr::read_chunk("espnyb.R")
+@
+
+<<setup>>==
+@
+
+\section{Introduction}
+This report looks at \Sexpr{length(esp)} students, between the years \Sexpr{round(min(admission$ansessionDebut)/10)} and \Sexpr{round(max(admission$ansessionFin, na.rm=T)/10)}. During this time interval, we will look at the \Sexpr{length(esp)} students who got initially got admitted to the Explorations Science Program, and how well they fared after they got admitted into the Science Program (usually after first year)
+
+\section{Comparing Grade Distributions of ESP students with Regular Science students}
+We begin by looking at all the NYB courses (Math, Chemistry, Physics) ever taken by ESP students, and compare the distribution of the grades they got, as compared to the distribution of grades achieved by all regular science students in their NYB courses.
+
+\subsection{All courses}
+Number of student-course pairs for each program
+<<nyb,results='asis'>>==
+@
+
+<<nyb-plot, out.width='7cm', out.height='6cm', fig.show='hold'>>==
+@
+
+\subsection{Math}
+Number of student-course pair observations for each program
+<<math-nyb,results='asis'>>==
+@
+
+
+<<math-nyb-plot, out.width='7cm', out.height='6cm', fig.show='hold'>>==
+@
+
+\subsection{Chemistry}
+Number of student-course pair observations for each program
+<<chem-nyb,results='asis'>>==
+@
+<<chem-nyb-plot, out.width='7cm', out.height='6cm', fig.show='hold'>>==
+@
+
+\subsection{Physics}
+Number of student-course pair observations for each program
+<<phys-nyb, results='asis'>>==
+@
+<<phys-nyb-plot, out.width='7cm', out.height='6cm', fig.show='hold'>>==
+@
+
+\section{Graduation of ESP students}
+\subsection{Dropping Out}
+What happens to Explorations students as they make their way towards graduation? How does this compare to the Regular Science Program?
+<<graduation, results='asis'>>=
+@
+ % Of the \Sexpr{nrow(esp)} students who got admitted to ESP between \Sexpr{round(min(admission$ansessionDebut)/10)} and \Sexpr{round(max(admission$ansessionFin, na.rm=T)/10)}, \Sexpr{nrow(esp.grads)} have graduated, and \Sexpr{nrow(current.registered.students.esp)} are still active. This means \Sexpr{nrow(esp)}-\Sexpr{nrow(esp.grads)}-\Sexpr{nrow(current.registered.students.esp)} = \Sexpr{dropped} students have essentially dropped out from the college (\Sexpr{round(dropped.esp.prop,2)*100}\%). \\
+
+\subsection{Program of Graduation}
+For the \Sexpr{nrow(esp.grads)} students initially admitted to ESP who have graduated, below is a year by year plot of which programs they graduated from (as long as more than 2 graduated from that program in that year)
+
+<<graduation-plot, opts.label='fig.full'>>==
+@
+\end{document}

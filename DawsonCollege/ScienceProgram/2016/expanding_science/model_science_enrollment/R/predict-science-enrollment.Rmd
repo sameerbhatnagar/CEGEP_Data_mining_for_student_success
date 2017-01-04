@@ -1,0 +1,119 @@
+---
+title: "Predict Science Enrollment"
+author: "Sameer Bhatnagar "
+date: "December 19, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, warning = F)
+knitr::read_chunk('predict-science-enrollment.R')
+knitr::read_chunk('predict-science-enrollment-functions.R')
+```
+
+```{r load-data, echo=FALSE}
+```
+
+## Define and count science students in every semester
+We define a student as being in Science program if, for any given semester, they have 
+
+- an *IDEtudiantSession* whose __program__ field is filled with __200\*__, and
+- that *IDEtudiantSession* appears in the __*inscription*__ table with at least one program specific science course
+
+```{r count-students-per-semester}
+```
+
+## Graduation Dates
+Using the student certification table, we look for students who are enrolled in science, and when they graduated from __200B0__
+```{r graduation-dates}
+```
+
+## Calculate States
+Herein I represent student who graduated in the summer, as having graduated in the preceding winter. Also, the _term_ colmn can seem confusing for rows when students graduate, as it looks like an additional term. This is a technicality I take advantage of to effciently compute all possible state transitions in the following section.
+
+```{r states}
+```
+
+## Demonstrate States for some students
+To give some idea of what typical student paths through the college look like in this framework, here are the state transitions for 
+
+- a student who graduated through science
+- a student who switched out of science
+- an ESP student who went on to graduate from science
+
+```{r demo-student-states}
+```
+
+
+## Calculate State Transition Probabilities
+We now look calculate the probabilities of students transitioning from one state to the next. We look at all data from 2010 onwards, and for every possible student state (e.g. _Winter-Pure-2_ is a student in Pure in their second term at the college), we count the number of times these students transitioned to all possible other states (e.g. _Fall-Pure-3_ or _Out_ or _Fall-Health-3_). Here is the workhorse function for this calculation:
+```{r calculate-state-transition-probabilities}
+```
+
+Below are a sample of these state transition probabilities, which represent the parameters of our model.
+
+```{r state-transitions}
+```
+
+
+These parameters can give us interesting insight as to where in the program students are most likely to switch _out_ of Science, or _graduating_. Below are specifically these probabilities.
+
+```{r demo-probs-grad-out}
+```
+
+## Model Validation
+Before projecting forward, we demonstrate how this model can be validated, by _predicting_ enrollments for Fall 2014 until Fall 2016. We project forward one semester at a time, following the same following three steps:
+
+1. starting with __Winter 2014__, we count up the number of students in all the different _Winter_ states (e.g. _Winter-Pure-2_, _Winter-Enviro-4_, etc.), and multiply these counts by the probabilities of moving forward to all future states in the __Fall 2014__. 
+``` {r project-state1-state2}
+```
+
+2. from actual data, we append to these predicted counts for __Fall 2015__, the number of newly admitted students, as being in either of the states _Fall-Pure-1_, _Fall-Health-1_, _Fall-Enviro-1_, _Fall-ESP-1_, or _Fall-DSP-1_.
+
+```{r append-new-admits-to-state2}
+```
+
+To take note in the function above, is the _if-else_ structure, which seperates our model validation from actual future predictions. For all semesters leading until the __NOW__ date, we use _actual_ admissions numbers for all the profiles each semester. For future projections, we have two steps:
+
+a. Since we do not know the numbers that will be admitted to all the profiles, we take the average over all past years for admission to that profile, and assume that will continue
+b. for Pure & Applied, we set the nuber of new admits to 300 students (which according to previous _seat count_ analysis, still leads to less than 600 seats in the bottle neck Fall Chemistry NYA course)
+
+3. we sum over the different states for each profile in this __Fall 2015__ semester, and append this to our enrollement history. We also 
+```{r update-enrollment-history}
+```
+
+This is summarize in the code chunk below.
+
+```{r predict-enrollments-w20141-w2015}
+```
+
+## Predicting Enrollments forward
+We can now repeat the above process by encapsulating the three main steps into one function, that projects enrollements one year forward.
+
+```{r project-enrollements-one-year-forward}
+```
+
+We repeat this function to project forward until the winter of 2021. Note how that the calulation changes when we reach the present for _new admits_.
+
+```{r predict-enrollments-w2015-w2021}
+```
+
+## Conclusion: Enrollment projections
+We now reach the grand final product: enrollment projections for the Science, by profile, for the case if we increase the number of newly admitted student to Pure & Applied to 300, every fall semester.
+```{r build-tables-for-plotting-enrollment-history, echo=FALSE}
+```
+```{r plot-enrollment-history,echo=FALSE}
+```
+
+A couple of items to notice:
+
+- The model does a relatively good job predicting enrollments up until now, validating our model, and giving some confidence in future projections.
+- In the future projections, we see that that while the Pure population increases steadily until reaching a plateau in 2020 (after which students from 2017 are mostly graduated or gone), the Health group increases slightly as well. This is our model capturing the transfers from Pure to Health.
+
+Finally, below is the data that the above figure is built upon.
+```{r print-enrollment-numbers}
+```
+

@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{float}
+\begin{document}
+
+\title{Leaky Profiles}
+\maketitle
+
+<<setup, echo=F,message=FALSE,cache=FALSE,results='hide'>>=
+opts_chunk$set(echo = F, tidy = TRUE, cache = FALSE, warning = FALSE, message = FALSE)
+opts_knit$set(eval.after = 'fig.cap') # for captions to be evaluated after R objects are available 
+
+knitr::read_chunk("program-transfers.R")
+@
+
+<<load-data>>==
+@
+
+<<science-admits>>==
+@
+
+
+<<profile-transfers>>==
+@
+
+
+<<program-transfers>>==
+@
+
+<<program-transfer-confusion-matrices, results='asis'>>==
+@
+
+
+\end{document}
