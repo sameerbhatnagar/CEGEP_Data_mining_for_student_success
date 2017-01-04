@@ -4,4 +4,8 @@ This repository holds different scripts which work off of the anonymized CLARA d
 
 Many thanks go to 
  - Derek Gaucher and Anna Likht from Dawson College's Office of IST for composing the scripts which extract the data from college databases
- - Funding provided by the _Programme de Recherche en Enseignment et Apprentissage_
+ - the Dawson College Science program, for support and feedback throughout the developpment of initial versions of this project
+ - This project was made possible through funding provided by the _Programme de Recherche en Enseignment et Apprentissage_
+
+
+
