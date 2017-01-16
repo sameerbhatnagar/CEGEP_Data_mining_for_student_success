@@ -1,0 +1,30 @@
+---
+title: "Terms until Graduation"
+author: "Sameer Bhatnagar"
+date: "January 15, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+knitr::read_chunk('predict-science-enrollment.R')
+```
+
+```{r load-data}
+```
+
+I start with admissions tables to find students admitted to Science, and then find when those students graduated. I then count the terms between their admission and their graduation.
+
+```{r calculate-mean-time-to-graduation-by-cohort, echo=T,message=FALSE}
+```
+
+The numbers decrease as we get closer to present, as most Cohort A students have not graudted yet (those we are seeing are program transfers,etc.)
+
+
+Below I show the distributions throgh box plots. Easily 25% of students from fall cohorts take longer than 4 semesters.
+```{r calculate-mean-time-to-graduation-by-cohort-box, echo=T,message=FALSE,warning=FALSE}
+```
+
+This is maybe a clearer picture.
+```{r calculate-mean-time-to-graduation-by-cohort-bar, echo=T,message=FALSE,warning=FALSE}
+```

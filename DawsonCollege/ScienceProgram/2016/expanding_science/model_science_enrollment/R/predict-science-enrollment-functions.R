@@ -36,6 +36,10 @@ update_new_admits <- function(s2,student_states,current.ansession)
   if (current.ansession<=NOW){
     new.admits<-student_states[ansession==current.ansession][term==1][grep(current.semester,state),.N,by=state]
     state1<-rbind(s2,new.admits)
+    write.csv(state1,
+              file = paste0(
+                'predict-science-enrollement-tables/population-distributions-by-state/',current.ansession,'.csv'),
+              row.names = F)
     return(state1)  
   }
   # if projecting forward, use average number of students admitted to each profile in all past
@@ -54,7 +58,11 @@ update_new_admits <- function(s2,student_states,current.ansession)
       new.admits[state=='Fall-Pure-1',N:=300]
     }
     state1<-rbind(s2,new.admits)
-    return(state1)
+    write.csv(state1,
+              file = paste0(
+                'predict-science-enrollement-tables/population-distributions-by-state/',current.ansession,'.csv'),
+              row.names = F)
+        return(state1)
   }
 }
 
