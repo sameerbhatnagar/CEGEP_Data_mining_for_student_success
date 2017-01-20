@@ -307,7 +307,7 @@ terms.to.grad[ansessionDebut%%10!=2][order(session,ansessionDebut)]
 
 ## ---- calculate-mean-time-to-graduation-by-cohort-box ----
 ggplot(science.grads[ansessionDebut%%10!=2],aes(x=factor(ansessionDebut), y=time.to.grad)) + 
-  geom_boxplot(outlier.size = 0.1) + coord_flip()+
+  geom_boxplot(outlier.size = 0.1) + geom_jitter() coord_flip()+
   scale_y_continuous(limits = c(1,8),breaks = c(1:8))
 
 ## ---- calculate-mean-time-to-graduation-by-cohort-bar ----

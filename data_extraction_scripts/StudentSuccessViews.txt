@@ -162,5 +162,20 @@ inner join dbo.Etudiant e1
 on e1.student_number = HASHBYTES('SHA2_256',  CONVERT(nvarchar(4000),e.numero)) 
 GO
 
-
+create view [dbo].[vwEvaluationEtudiant]
+as
+select
+HASHBYTES('SHA2_256',  CONVERT(nvarchar(4000),e.numero)) student_number
+, ee.AnSession,ee.IdGroupe
+, cmi.titre result
+from [ClaraReportProdLink].[CLARA_DAW_PROD].[EvaluationMiSession].[EvaluationEtudiant]  ee
+left join [ClaraReportProdLink].[CLARA_DAW_PROD].[Reference].[CoteMiSession] cmi
+on cmi.idCoteMiSession=ee.idCoteMiSession
+inner join [ClaraReportProdLink].[CLARA_DAW_PROD].Etudiants.Etudiant e
+on e.IDEtudiant=ee.IDEtudiant
+where  exists (select 1 from  [ClaraReportProdLink].[CLARA_DAW_PROD].Etudiants.EtudiantSession es
+                           where es.IDEtudiant=e.IDEtudiant
+                           and es.AnSession > 20050
+                           and es.Etat=1
+                           and es.IDUniteOrg =265)
 
