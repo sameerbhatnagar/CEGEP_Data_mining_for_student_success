@@ -1,3 +1,4 @@
+## Scripts to extract anonymized data from CLARA 
 
 - The file `StudentSuccessViews.txt` contains the procedure to create an anonymized mirror of the CLARA tables
 
