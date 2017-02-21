@@ -1,0 +1,57 @@
+---
+title: "About DO's status"
+author: "Jon Guillemette"
+date: "February 6, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, warning = F)
+knitr::read_chunk('AboutDOSOs.R')
+knitr::read_chunk('DOfinder.R')
+```
+
+```{r load-data, echo=FALSE}
+```
+
+## Getting a list of DO
+*Note that this was done with the data pior to obtaining the new pull with the MSE*\newline
+We can obtain a list of DO (by student number) by using the DOfinder.R program that we will keep refining to verify inter-school transfers, but currently DOs are defined as people who aren't currently students and people who haven't graduated. A clear weak point is if someone is taking a year off or some sort of hiatus, they are counted as a DO.
+
+Let us begin with the 36k DOs that we have found since 2010 at Dawson. 
+
+### Step 1
+The weirdness begins when we start tracking those DOs across different tables:
+```{r DO-Admin}
+
+```
+
+### Step 2
+Ok. So this means that there are 15.3k students who are NOT in the admissions table, but were counted as DOs when reading from the etudiant session table. That is a bit odd, let's dig deeper into the etudiant session table to see who is doing what:
+
+``` {r IDESDO}
+```
+If you specifically look at where count equals 1 (line 6), you can see that there are almot 15k instances of students only having 1 ID etudiant session which means that they stayed only 1 semester. 
+
+### Step 3
+In that case, let's look more closely at the type of stay that these students have:
+```{r DO stats}
+```
+Ok, more weirdness. Keep in mind that these are based on ID etudiant session so it is normal that the total is larger 
+than 15.3k. It is still weird that more than 15k of students who are in the etudiant session table have SO as a type de frequentation. This should be TPL for full time or TPA for part time. SO would mean no classes. Let's double check that in the inscription table.
+
+### Step 4
+``` {r Ins}
+```
+This is the weirdest part.... Our 15k or so students who have etudiant session IDs, but almost all have SO as a status and therefore aren't taking any classes. Of these students, only 624 are actually registered for a class AND they all got NA as a grade which means they never finished the class (not sure the exact criteria to get NA) but they definitely didn't finish. 
+
+## Conclusion
+Let's put this in context: of the 36k dropouts that we have found, we just realised that approximately 15k of those NEVER WALKED INTO DAWSON. That means that the drop-out rate isn't approximately 36%, but rather more like 20%! I think the way everyone has been calculating drop outs is incorrect and are therefore overestimating Qc's drop-outs. The end purpose of this study was to reduce the number of drop-outs, I guess this counts :) \newline 
+This also affects who we shoud try to help. We can't do much for the students who never walk in...
+
+Follow-up questions: 
+\begin{itemize}
+\item Sam: could this be the reason why the admission table has garbarge. Students who were admitted to the college, but never attended a single class would be given a bogus admission ID? 
+\item Of the other 21k who stayed and eventually dropped out, I think we should be able to develop a new category to see if it is for academic reasons or not. This would be like what we had done for 1 student together, but done for all. 
+\item Let's confirm the use of SO with Derek or someone who knows...
+\end{itemize}
